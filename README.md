@@ -7,7 +7,7 @@ Ruby (v3) med Sinatra och SQLite.
 * Project setup: ```bundle install```
 * Seed DB: ```rake seed```
 * Run backend: ```rake run```
-* Seeda databasen via webbläsaren och lista alla todos i json: http://localhost:9292/api/v1/reset/?
+* Seeda databasen via webbläsaren http://localhost:9292/api/v1/reset/
 
 ## Backend
 
