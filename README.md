@@ -9,7 +9,7 @@ Ruby (v3) med Sinatra och SQLite.
 * Run backend: ```rake run```
 * Seeda databasen via webbläsaren http://localhost:9292/api/v1/reset/
 
-## Backend
+## Frontend
 
 Appen startas på: http://localhost:8080/ 
 Testanvändare ola med lösenord 123
