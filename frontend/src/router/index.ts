@@ -1,8 +1,17 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import QOTDView from '../views/QOTDView.vue'
 import SignInView from '../views/SignInView.vue'
 import UserView from '../views/UserView.vue'
+import store from '../store'
+
+function authenticationRequired(to : RouteLocationNormalized, from : RouteLocationNormalized, next: NavigationGuardNext) {
+  if (!store.getters.isAuthenticated) {
+    next('/signin')
+  } else {
+    next()
+  }
+}
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +32,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/users',
     name: 'User View',
+    beforeEnter: (to, from, next) => { authenticationRequired(to, from, next) },
     component: UserView
   }
 ]

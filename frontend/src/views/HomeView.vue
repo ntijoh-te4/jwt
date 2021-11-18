@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Welcome to JTWDemo</h1>
+    <h1>Welcome to Vuex Demo</h1>
   </div>
 </template>
 

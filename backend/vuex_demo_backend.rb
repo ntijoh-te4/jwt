@@ -5,7 +5,7 @@ require_relative 'qotd'
 
 MY_SECRET_SIGNING_KEY = "secret"
 
-class JWTDemoBackend < Sinatra::Base
+class VuexDemoBackend < Sinatra::Base
  
   def initialize
     super
@@ -56,6 +56,7 @@ class JWTDemoBackend < Sinatra::Base
 
   #quote of the day
   get '/api/v1/qotd' do
+    sleep 1
     {quote: QOTD.quote}.to_json
   end
 

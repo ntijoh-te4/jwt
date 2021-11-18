@@ -1,22 +1,27 @@
 <template>
     <h1>Quote of the Day</h1>
-    <h3>{{quote.quote}}</h3>
-    <h4>{{quote.author}}</h4>
+    <div v-if="quote != null" class="quote">
+        <h3>{{quote.quote}}</h3>
+        <h4>{{quote.author}}</h4>
+    </div>
+    <div v-else>
+        <span>Fetching quote...</span>
+    </div>
 </template>
 
 <script lang="ts">
 
-import { AxiosInstance } from 'axios'
-import { defineComponent, inject } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
-    async setup() {
-        const axios = inject('axios') as AxiosInstance
+    setup() {
+        console.log('Setting up QOTDComponent.vue')
+        const store = useStore()
+        const quote = computed(() => store.getters.quote)
+        store.dispatch('fetchQuote')
 
-        const response = await axios.get('http://localhost:9292/api/v1/qotd')
-        const quote = response.data.quote
-
-        return {quote}
+        return {quote }
     },
 })
 </script>

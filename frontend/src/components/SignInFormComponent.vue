@@ -1,56 +1,34 @@
 <template>
-    <form v-on:submit.prevent="signIn" action="#" class="sign-in">
-        <span class="message" v-if="error != ''">{{error}}</span>
+    <span>{{message}}</span>
+    <form @submit.prevent="signIn" action="#" class="sign-in">
+        <input name="username" type="text" placeholder="username">
         <br>
-        <input v-model="username" type="text" placeholder="username">
-        <br>
-        <input v-model="password" type="password" placeholder="password">
+        <input name="password" type="password" placeholder="password">
         <br>
         <button type="submit">Sign In</button>
     </form>
 </template>
 
 <script lang="ts">
-import { AxiosInstance } from 'axios'
-import { defineComponent, inject, ref } from 'vue'
-import authenticated from '@/store'
+import { computed, defineComponent} from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default defineComponent({
     setup() {
         console.log("Setting up SingInFormComponent.vue")
-        const username = ref('')
-        const password = ref('')
-        const error = ref('')
+        const store = useStore()
+        const router = useRouter()
+        const message = computed(() => store.getters.authenticationMessage)
+        async function signIn(event: Event) {
+            const target = event.target as HTMLFormElement
+            const formData = new FormData(target)
+            const credentials = Object.fromEntries([...formData])
+            await store.dispatch('signIn', credentials )
+            router.push('/users')
+        }   
 
-        const axios = inject('axios') as AxiosInstance
-
-        async function signIn() {
-            try {
-                const response = await axios.post('/users/signin', 
-                                                  {username: username.value,
-                                                   password: password.value})
-                saveToken(response.data.token)
-                setMessage('Sign in successful')
-                username.value = ''
-                password.value = ''
-
-            } catch (error) {
-                console.log(error)
-                setMessage("Invalid username or password");
-            }
-        }
-
-        function setMessage(message: string) {
-            error.value = message
-        }
-
-        function saveToken(token: string) {
-            authenticated.value = true
-            localStorage.setItem('token', token)
-
-        }
-
-        return {username, password, error, signIn}
+        return {signIn, message}
     },
 })
 </script>

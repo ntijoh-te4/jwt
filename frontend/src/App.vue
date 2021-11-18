@@ -7,16 +7,6 @@
 import { defineComponent } from 'vue'
 import NavbarComponent from '@/components/NavbarComponent.vue'
 
-export interface IQOTD {
-  author: string,
-  quote: string,
-}
-
-export interface IUser {
-  id: string,
-  username: string,
-}
-
 export default defineComponent({
   setup() {
     console.log("Setting upp App.vue")

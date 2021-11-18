@@ -10,19 +10,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import authenticated from '@/store'
+import { computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
     setup() {
+      console.log('Setting up NavbarComponent.vue')
+      const store = useStore()
+      const authenticated = computed(() => store.getters.isAuthenticated)
+      console.log('Authenticated: ', authenticated.value)
+      console.log(store.state.quote)
 
       async function signOut() {
-        localStorage.removeItem('token')
-        authenticated.value = false
+        await store.dispatch('signOut')
       }
 
       return {authenticated, signOut}
-    }
+  }
 })
 </script>
 
