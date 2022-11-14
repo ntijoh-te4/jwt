@@ -69,6 +69,7 @@ export default createStore({
       try {
         const response = await api.post('/users/signin', credentials)
         context.commit('authenticationSuccess', response.data.token)
+        console.log("JWT encoded: " + JSON.stringify(response.data.token))
       } catch {
         context.commit('authenticationFailure')
       }

@@ -1,9 +1,10 @@
-require 'sinatra'
 require 'bcrypt'
+require 'sinatra'
+require 'time'
 require 'jwt'
 require_relative 'qotd'
 
-MY_SECRET_SIGNING_KEY = "secret"
+MY_SECRET_SIGNING_KEY = "your-256-bit-secret"
 
 class VuexDemoBackend < Sinatra::Base
  
@@ -91,9 +92,9 @@ class VuexDemoBackend < Sinatra::Base
     else
 
       response = {
-        token: JWT.encode({id: user['id']}, MY_SECRET_SIGNING_KEY)
+        token: JWT.encode({id: user['id'], today_is: Time.now}, MY_SECRET_SIGNING_KEY)
       }
-
+      
       [200, response.to_json]
     end
   end
