@@ -1,7 +1,8 @@
 # Vue JWT Ddemo
 JWT Demo med Vue3-frontend. Ruby, Sinatra och SQlite backend. Authentisering med JWT.
 
-När du är inloggad i appen får du lov att lista användare. När du inte är inloggad får du inte lov att lista användare.
+## Uppgift
+När du är inloggad i appen får du lov att lista användare. När du inte är inloggad får du inte lov att lista användare. Ta reda på hur appen vet att du är inloggad och då ska visa / ej visa menyn.
 
 ## Backend
 Ruby (v3.1.x) med Sinatra och SQLite. Ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```). Behöver du installera en version använder du ```ruby-install```.
