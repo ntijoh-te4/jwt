@@ -7,3 +7,5 @@ gem 'sqlite3'
 gem 'rerun'
 gem 'bcrypt'
 gem 'jwt'
+
+ruby '~> 3.1.0' 
