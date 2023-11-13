@@ -82,7 +82,7 @@ class VuexDemoBackend < Sinatra::Base
     content_type :json
 
     user_form = JSON.parse(request.body.read)
-    p "-------------------------"
+    p "------------------------- signing in"
     p user_form
     p "-------------------------"
 
