@@ -10,12 +10,12 @@ När du är inloggad i appen får du lov att lista användare. När du inte är 
 ## Backend
 Ruby (v3) med Sinatra och SQLite. Ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```). Behöver du installera en version använder du ```ruby-install```.
 
+För att kuna köra Backend på Ruby 3.2 behöver du installera EventMachine 1.2.7 vilket Bundler inte verkar kunna. Läs isf. https://www.jessesquires.com/blog/2023/01/18/eventmachine-failure-on-macos-ventura/
+
 * Project setup: ```bundle install```
 * Seed DB: ```rake seed```
 * Run backend: ```rake run```
 * Seeda databasen via webbläsaren http://localhost:9292/api/v1/reset/
-
-För att kuna köra Backend på Ruby 3.2 behöver du installera EventMachine 1.2.7 vilket Bundler inte verkar kunna. Läs isf. https://www.jessesquires.com/blog/2023/01/18/eventmachine-failure-on-macos-ventura/
 
 ## Frontend
 
