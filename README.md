@@ -2,7 +2,7 @@
 JWT Demo med Vue3-frontend. Ruby, Sinatra och SQlite backend. Authentisering med JWT.
 
 ## Backend
-Ruby (v3.1.x) med Sinatra och SQLite. Ändra ruby-version med chruby (tex chruby ruby-3.1.2)
+Ruby (v3.1.x) med Sinatra och SQLite. Ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```). Behöver du installera en version använder du ```ruby-install```.
 
 * Project setup: ```bundle install```
 * Seed DB: ```rake seed```
