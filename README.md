@@ -23,5 +23,27 @@ Vue3 med VueX.
 Appen startas på: http://localhost:8080/ 
 Testanvändare ola med lösenord 123
 
-* Project setup: ```yarn install```
-* Compiles and hot-reloads for development: ```yarn serve```
+* Project setup: ```npm install```
+* Compiles and hot-reloads for development: ```npm run serve```
+
+-
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```

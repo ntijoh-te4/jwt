@@ -13,7 +13,7 @@ class Seeder
 
     encrypted_password1 = BCrypt::Password.create("123")
     encrypted_password2 = BCrypt::Password.create("abc")
-    db.execute('INSERT INTO users (username, encrypted_password) VALUES (?, ?)', "ola", encrypted_password1)
-    db.execute('INSERT INTO users (username, encrypted_password) VALUES (?, ?)', "daniel", encrypted_password2)
+    db.execute('INSERT INTO users (username, encrypted_password) VALUES (?, ?)', ["ola", encrypted_password1])
+    db.execute('INSERT INTO users (username, encrypted_password) VALUES (?, ?)', ["daniel", encrypted_password2])
   end
 end

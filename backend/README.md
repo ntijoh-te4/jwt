@@ -1,2 +1,2 @@
 # jwt-minimal-backend
-JWT example with a minimal Sinatra backend.
+JWT example with a minimal Sinatra backend and Vue frontend.
