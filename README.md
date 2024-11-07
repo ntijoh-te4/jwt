@@ -2,7 +2,7 @@
 JWT Demo med Vue3-frontend. Ruby, Sinatra och SQlite backend. Authentisering med JWT.
 
 ### Uppgift
-Bara när du är inloggad har du rättighetre att se en lista på alla användare i databasen. Knappen i menyn döljs / visas.
+Bara när du är inloggad har du rättigheter att se en lista på alla användare i databasen. Knappen i menyn döljs / visas.
 
  - Ta reda på hur appen vet att du är inloggad och då ska visa eller ej visa menyn.
  - Lägg till en ny funktion som också styrs på inloggad / ej inloggad.
