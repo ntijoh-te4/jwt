@@ -1,3 +1,14 @@
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createPinia } from 'pinia';
+
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
+app.mount('#app');
+
+/*
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -13,3 +24,4 @@ app.use(VueAxios, axios)
 app.use(store)
 app.mount("#app")
 
+*/

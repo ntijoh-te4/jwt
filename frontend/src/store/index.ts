@@ -16,12 +16,14 @@ interface IUser {
   username: string
 }
 
-export type State = { quote: IQuote | null, 
-                      user: IUser | null, 
-                      authenticated: boolean, 
-                      users: Array<IUser>,
-                      authenticationMessage: string }
-const state: State = {quote: null, user: null, authenticated: false, users: [], authenticationMessage: '' }
+export type State = {
+  quote: IQuote | null,
+  user: IUser | null,
+  authenticated: boolean,
+  users: Array<IUser>,
+  authenticationMessage: string
+}
+const state: State = { quote: null, user: null, authenticated: false, users: [], authenticationMessage: '' }
 
 export default createStore({
   state,
@@ -33,38 +35,45 @@ export default createStore({
     authenticationMessage: state => state.authenticationMessage
   },
   mutations: {
-    setQuote (state, quote) {
+    setQuote(state, quote) {
       state.quote = quote
     },
-    authenticationSuccess (state, token) {
-      console.log('authentication successful')
+    authenticationSuccess(state, token) {
+      console.log(' Authentication successful')
       state.authenticationMessage = ''
       localStorage.setItem('token', token)
+      console.log(' Saving JWT token ' + token + ' to local storage')
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;  // Update axios default header
+
       state.authenticated = true
+      console.log(" Key saved to localStorage: " + localStorage.getItem('token'));
     },
-    authenticationFailure (state) {
-      console.log('authentication failed')
+    authenticationFailure(state) {
+      console.log(' Athentication failed')
       state.authenticationMessage = 'incorrect username or password'
       localStorage.removeItem('token')
       state.authenticated = false
     },
-    authenticationRemoval (state) {
-      console.log('authentication removed')
+    authenticationRemoval(state) {
+      console.log(' Authentication removed')
       state.authenticationMessage = ''
       localStorage.removeItem('token')
       state.authenticated = false
     },
     setUsers(state, users) {
-      console.log('Setting users', users)
+      console.log(' Setting users', users)
       state.users = users
     }
   },
   actions: {
-    async fetchQuote (context) {
+    async fetchQuote(context) {
+
+      console.log("JWT token from axios headers:", axios.defaults.headers.common["Authorization"]);
+
       const response = await api.get('/qotd')
       context.commit('setQuote', response.data.quote)
     },
-    async signIn (context, credentials) {
+    async signIn(context, credentials) {
       console.log('Signing in with', credentials)
       try {
         const response = await api.post('/users/signin', credentials)
@@ -74,10 +83,11 @@ export default createStore({
         context.commit('authenticationFailure')
       }
     },
-    async signOut (context) {
+    async signOut(context) {
+      console.log('Signing out')
       context.commit('authenticationRemoval')
     },
-    async fetchUsers (context) {
+    async fetchUsers(context) {
       const response = await api.get('/users')
       console.log(response.data)
       context.commit('setUsers', response.data)

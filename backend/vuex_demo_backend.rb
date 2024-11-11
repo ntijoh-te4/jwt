@@ -3,6 +3,7 @@ require 'sinatra'
 require 'time'
 require 'jwt'
 require_relative 'qotd'
+require 'debug'
 
 MY_SECRET_SIGNING_KEY = "your-256-bit-secret"
 
@@ -20,10 +21,11 @@ class VuexDemoBackend < Sinatra::Base
     end
 
     def authenticated?
-      bearer = env.fetch('HTTP_AUTHORIZATION', '').slice(7..-1)
-      return false unless bearer
+      jwt_bearer_token = env.fetch('HTTP_AUTHORIZATION', '').slice(7..-1)
+      return false unless jwt_bearer_token
+      p "JWT bearer | #{jwt_bearer_token}"
       begin
-        @token = JWT.decode(bearer, MY_SECRET_SIGNING_KEY, false)
+        @token = JWT.decode(jwt_bearer_token, MY_SECRET_SIGNING_KEY, false)
         @user = @db.execute("SELECT * FROM users WHERE id = ?", @token.first['id']).first
         return !!@user
       rescue JWT::DecodeError => ex
@@ -39,6 +41,7 @@ class VuexDemoBackend < Sinatra::Base
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
     content_type :json
+    sleep 1 #simulate slow internet connection
   end
   
   #Preflight request
@@ -57,16 +60,16 @@ class VuexDemoBackend < Sinatra::Base
 
   #quote of the day
   get '/api/v1/qotd' do
-    sleep 1
-    {quote: QOTD.quote}.to_json
+    if (authenticated?)
+      p QOTD.quote
+      {qotd: QOTD.quote}.to_json
+    else 
+      halt 401, 'Unauthorized'
+    end
   end
 
   #index
   get '/api/v1/users/?' do
-    p "-------------------------"
-    p env.fetch('HTTP_AUTHORIZATION', '')
-    p "-------------------------"
-
       halt 401, 'Unauthorized' unless authenticated?
       @db.execute('SELECT id, username FROM users').to_json
   end
@@ -80,13 +83,9 @@ class VuexDemoBackend < Sinatra::Base
   #sign in
   post '/api/v1/users/signin' do
     content_type :json
-
     user_form = JSON.parse(request.body.read)
-    p "------------------------- signing in"
-    p user_form
-    p "-------------------------"
-
     user = @db.execute('SELECT * FROM users WHERE username = ?', user_form['username']).first
+
     unless user && BCrypt::Password.new(user['encrypted_password']) == user_form['password']
       [401, ""]
     else
@@ -94,6 +93,8 @@ class VuexDemoBackend < Sinatra::Base
       response = {
         token: JWT.encode({id: user['id'], today_is: Time.now}, MY_SECRET_SIGNING_KEY)
       }
+
+      p "JWT signing in | #{response[:token]}"
       
       [200, response.to_json]
     end
