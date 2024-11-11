@@ -1,11 +1,8 @@
 # Vue JWT Ddemo
-JWT Demo med Vue3-frontend. Ruby, Sinatra och SQlite backend. Authentisering med JWT.
+JWT Demo med Vue-frontend. Ruby, Sinatra och SQlite backend. Authentisering med JWT.
 
 ### Uppgift
-Bara när du är inloggad har du rättigheter att se en lista på alla användare i databasen. Knappen i menyn döljs / visas.
-
- - Ta reda på hur appen vet att du är inloggad och då ska visa eller ej visa menyn.
- - Lägg till en ny funktion som också styrs på inloggad / ej inloggad.
+Todo
 
 ## Backend
 Ruby med Sinatra och SQLite. 
@@ -18,32 +15,12 @@ Ruby med Sinatra och SQLite.
 Behöver du så ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```) och använd ```ruby-install``` för att installera versioner.
 
 ## Frontend
-Vue3 med VueX.
+Vue, TS.
 
-Appen startas på: http://localhost:8080/ 
-Testanvändare ola med lösenord 123
+Webbappen startas på: http://localhost:5173/
+Testanvändare 
+    - ola / 123
+    - daniel / 123
 
 * Project setup: ```npm install```
 * Compiles and hot-reloads for development: ```npm run serve```
-
--
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
