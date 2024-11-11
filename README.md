@@ -15,6 +15,9 @@ Ruby med Sinatra och SQLite.
 Behöver du så ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```) och använd ```ruby-install``` för att installera versioner.
 
 ## Frontend
+
+Finns i JWTFrontend - mappen
+
 Vue, TS.
 
 Webbappen startas på: http://localhost:5173/
