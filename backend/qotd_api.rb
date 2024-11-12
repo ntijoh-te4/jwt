@@ -2,13 +2,12 @@ require 'bcrypt'
 require 'sinatra'
 require 'time'
 require 'jwt'
-require_relative 'qotd'
 require 'debug'
 
 MY_SECRET_SIGNING_KEY = "your-256-bit-secret"
 
 class QotdApi < Sinatra::Base
- 
+
   def initialize
     super
     @db = SQLite3::Database.new('db/jwt_demo.db')
@@ -39,7 +38,7 @@ class QotdApi < Sinatra::Base
   configure do
     enable :cross_origin
   end
-  
+
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
     content_type :json
@@ -61,7 +60,7 @@ class QotdApi < Sinatra::Base
       qotd = @db.execute('SELECT * FROM qotd ORDER BY RANDOM() LIMIT 1').first.to_json
       p qotd
       qotd
-    else 
+    else
       unauthorized_response
     end
   end
@@ -71,7 +70,7 @@ class QotdApi < Sinatra::Base
     if authenticated?
       @db.execute('SELECT id, username FROM users').to_json
     else
-      unauthorized_response 
+      unauthorized_response
     end
   end
 
