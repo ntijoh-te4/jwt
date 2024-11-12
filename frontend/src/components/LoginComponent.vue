@@ -43,7 +43,7 @@ async function signIn(){
         } else {
             console.error("No token in API response");
         }
-        
+
         //Fetch Qote of the day
         status.value += " || Fetching QOTD"
         await userStore.fetchQotd();
@@ -51,7 +51,7 @@ async function signIn(){
         author.value = userStore.author;
 
         status.value += " || Got QOTD | done";
-        
+
     } catch (error) {
         console.error("Login failed:", error);
         status.value += " || Login failed"
@@ -71,14 +71,14 @@ async function signIn(){
     </div>
 
     <hr><hr>
-    
+
     <form @submit.prevent="signIn" action="#" class="sign-in">
         <input v-model="username" name="username" type="text" placeholder="username">
         <br>
         <input v-model="password" name="password" type="password" placeholder="password">
         <br>
         <button type="submit">Sign In</button>
-    </form> 
+    </form>
 
     <div v-if="qotd && author">
         <h2>Quote of the Day:</h2>
