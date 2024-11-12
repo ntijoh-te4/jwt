@@ -7,12 +7,9 @@ Todo
 ## Backend
 Ruby med Sinatra och SQLite. 
 
-* Project setup: ```bundle install```
+* Project setup: ```bundle```
 * Seed DB: ```rake seed```
-* Run backend: ```rake run```
-* Seeda databasen via webbläsaren http://localhost:9292/api/v1/reset/
-
-Behöver du så ändra ruby-version med ```chruby``` (tex ```chruby ruby-3.1.2```) och använd ```ruby-install``` för att installera versioner.
+* Run backend: ```rake dev```
 
 ## Frontend
 

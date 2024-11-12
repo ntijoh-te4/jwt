@@ -6,6 +6,6 @@ task :seed do
 	Seeder.seed!
 end
 
-task :run do
+task :dev do
 	bundle exec 'rerun rackup'
 end

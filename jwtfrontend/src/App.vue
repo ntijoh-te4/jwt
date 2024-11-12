@@ -23,6 +23,12 @@ import LoginComponent from './components/LoginComponent.vue';
     background-color: salmon;
     overflow: scroll;
   }
+
+  blockquote footer {
+    font-style: italic;
+    margin-top: 0.5em;
+    margin-left: 1em;
+  }
 </style>
 
 <style scoped></style>

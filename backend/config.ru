@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler.require
 
-require_relative 'vuex_demo_backend'
+require_relative 'qotd_api'
 require_relative 'db/seeder'
 
-run(VuexDemoBackend)
+run(QotdApi)

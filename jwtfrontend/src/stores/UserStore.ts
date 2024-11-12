@@ -29,8 +29,8 @@ export const useUserStore = defineStore('UserStore', {
                     throw new Error("Failed to fetch QOTD");
 
                 const data = await response.json();
-                this.qotd = data.qotd.quote;
-                this.author = data.qotd.author;
+                this.qotd = data.quote;
+                this.author = data.author;
 
                 console.log("Got QOTD: " + this.qotd);
             } catch (error) {
