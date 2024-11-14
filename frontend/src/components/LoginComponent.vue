@@ -18,7 +18,7 @@ async function signIn(){
     token.value = "";
     try {
         status.value = "Starting login";
-        const response = await fetch(`${API_BASE_URL}/api/v1/users/signin`, {
+        const response = await fetch(`${API_BASE_URL}/api/v1/users/signin `, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: username.value, password: password.value })

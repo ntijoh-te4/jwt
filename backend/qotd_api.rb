@@ -55,10 +55,7 @@ class QotdApi < Sinatra::Base
 
   get '/api/v1/qotd' do
     if authenticated?
-      #p "Getting QOTD: #{QOTD.quote}"
-      #{qotd: QOTD.quote}.to_json
       qotd = @db.execute('SELECT * FROM qotd ORDER BY RANDOM() LIMIT 1').first.to_json
-      p qotd
       qotd
     else
       unauthorized_response
